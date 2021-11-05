@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <!--    ページ内設定  -->
+    <meta charset="utf-8">
+    <title>PushTimer | home</title>
+    <meta name="description" content="プッシュ通知で知らせてくれるタイマーアプリです。">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    SNSでの表示設定    -->
+    <meta property="og:title" content="PushTimer | トップ">
+    <meta property="og:site_name" content="PushTimer">
+    <meta property="og:description" content="あなたの予定、プッシュ通知で知らせます。">
+    <meta property="og:type" content="website">
+    <!-- <meta propetry="og:url" content="http://monomonosu.com/"> -->
+    <!-- <meta property="og:image" content="https://images.unsplash.com/photo-1554721378-4a20bd10c751?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=966&q=80"> -->
+    <!--  Twitter  -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@MONOMONOSU">
+
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue.min.css" />
+
+    <!-- Load fontawesome -->
+    <!-- link href="./css/all.css" rel="stylesheet" -->
+    <!--load all styles -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue-icons.min.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- bootstrap vue インポート -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" /> -->
+    <!-- Load polyfills to support older browsers -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script> -->
+    <!-- Load Vue followed by BootstrapVue -->
+    <!-- <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script> -->
+    <!-- Load the following for BootstrapVueIcons support -->
+    <!-- <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script> -->
+
+    <!--    CSSのロード    -->
+    <!-- <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="responsive-common.css">
+    <link rel="stylesheet" href="responsive-home.css"> -->
+    <!--    <link rel="stylesheet" href="responsive.css">-->
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #17A2B8;
+            color: black;
+        }
+    </style>
+    <div id="app">
+        <template>
+            <div>
+                <b-navbar type="dark" variant="dark">
+                    <b-navbar-nav class="mr-auto">
+                        <b-nav-item href="#"><img src="image/favicon.ico" width="32px" height="32px"></b-nav-item>
+                        <h1 style="color: beige;">PushTimer</h1>
+                    </b-navbar-nav>
+
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item href="#">Home</b-nav-item>
+                        <b-nav-item href="#">guide</b-nav-item>
+                        <b-nav-item href="#">policy</b-nav-item>
+                    </b-navbar-nav>
+                </b-navbar>
+            </div>
+        </template>
+
+        <b-col cols="7" class="text-center">
+            <b-card bg-variant="dark" text-variant="white" title="あなたの予定、プッシュ通知で知らせます。" class="m-5">
+                <b-card-text>
+                    PushTimerは時間を指定するだけでPush通知してくれるWebアプリケーションです。<br>
+                    使い方はguideリンクを見てね。
+                </b-card-text>
+                <b-button href="#" variant="primary">Go guide</b-button>
+            </b-card>
+        </b-col>
+
+        <b-card bg-variant="dark" text-variant="white" title="プッシュ内容を選択してね" class="m-5 text-center">
+            <b-card-text>
+                Push通知のテキスト文、何分後にお知らせするかを選択してね。<br>
+                内容が決まったらsubmitボタンを押してね。
+            </b-card-text>
+            <template>
+                <div>
+                    <b-form-input v-model="text" placeholder="Enter your name" type='time'></b-form-input>
+                    <div class="mt-2">{{ text }} 分後にお知らせします</div>
+                </div>
+            </template>
+            <b-button href="#" variant="primary">Submit!</b-button>
+        </b-card>
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello World!',
+                text: ''
+            }
+        })
+    </script>
+</body>
+
+</html>
