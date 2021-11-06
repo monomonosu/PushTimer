@@ -45,6 +45,14 @@
         integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
         crossorigin="anonymous"></script>
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- push.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
+
+
     <!-- bootstrap vue インポート -->
     <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
     <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" /> -->
@@ -90,28 +98,56 @@
             </div>
         </template>
 
-        <b-col cols="7" class="text-center">
-            <b-card bg-variant="dark" text-variant="white" title="あなたの予定、プッシュ通知で知らせます。" class="m-5">
-                <b-card-text>
-                    PushTimerは時間を指定するだけでPush通知してくれるWebアプリケーションです。<br>
-                    使い方はguideリンクを見てね。
-                </b-card-text>
-                <b-button href="#" variant="primary">Go guide</b-button>
-            </b-card>
-        </b-col>
+        <!-- 説明 -->
+        <b-row>
+            <b-col>
+                <b-card bg-variant="dark" text-variant="white" title="あなたの予定、プッシュ通知で知らせます。" class="m-5 text-center">
+                    <b-card-text>
+                        PushTimerは時間を指定するだけでPush通知してくれるWebアプリケーションです。<br>
+                        使い方はguideリンクを見てね。
+                    </b-card-text>
+                    <b-button href="#" variant="primary">Go guide</b-button>
+                </b-card>
+            </b-col>
+        </b-row>
 
+        <!-- 本文 -->
         <b-card bg-variant="dark" text-variant="white" title="プッシュ内容を選択してね" class="m-5 text-center">
             <b-card-text>
                 Push通知のテキスト文、何分後にお知らせするかを選択してね。<br>
                 内容が決まったらsubmitボタンを押してね。
             </b-card-text>
+            <!-- 入力内容 -->
             <template>
-                <div>
-                    <b-form-input v-model="text" placeholder="Enter your name" type='time'></b-form-input>
-                    <div class="mt-2">{{ text }} 分後にお知らせします</div>
-                </div>
+                <b-row>
+                    <b-col>
+                        <b-form-group label-cols-lg="1" label="タイトル：">
+                            <b-form-input v-model="title" id="title" type="text"></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-form-group label-cols-lg="1" label="メッセージ：">
+                            <b-form-input v-model="message" id="message"></b-form-input>
+                        </b-form-group>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-form-group label-cols-lg="2" label="通知時間：">
+                            <b-form-spinbutton v-model="input_time" min="1">
+                            </b-form-spinbutton>
+                        </b-form-group>
+                    </b-col>
+                    <b-col>分後</b-col>
+                </b-row>
+
+                <div class="mt-2">通知タイトル：{{ title }}</div>
+                <div class="mt-2">通知メッセージ：{{ message }}</div>
+                <div class="mt-2">通知時間：{{ input_time }} 分後にお知らせします</div>
             </template>
-            <b-button href="#" variant="primary">Submit!</b-button>
+            <b-button variant="primary" id="submit" @click="PushSubmit()">Submit!</b-button>
         </b-card>
     </div>
 
@@ -119,10 +155,44 @@
         const app = new Vue({
             el: '#app',
             data: {
-                message: 'Hello World!',
-                text: ''
+                title: 'タイトル',
+                message: 'メッセージ',
+                input_time: ''
             }
         })
+
+        //ボタンが押された時
+        function PushSubmit() {
+            var message = app.message;
+            var title = app.title;
+            var time = parseInt(app.input_time);
+            if (isNaN(time)) {
+                alert('数値を入力してください');
+                return false;
+            }
+            timeMicro = time * 60000;
+            setTimeout(function () { push(title, message) }, timeMicro);
+        }
+
+        //メイン機能
+        function push(title, message) {
+            Push.create(title, {
+                body: message,
+                icon: 'image/favicon.ico',
+                timeout: 10000,
+                onClick: function () {
+                    this.close();
+                    location.href = 'https://push-timer.monomonosu.com/';
+                }
+            });
+        }
+
+        // デバッグ
+        $(function () {
+            $("#submit").click(function () {
+                console.log(parseInt(app.input_time));
+            });
+        });
     </script>
 </body>
 
