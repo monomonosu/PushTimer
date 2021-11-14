@@ -98,9 +98,10 @@
                             </template>
                             <div>
                                 <p>指定した時間にPush通知でお知らせするタイマーです。<br><br>
+                                    <b-img src="image/permission.png" fluid alt="Responsive image"></b-img><br><br>
                                     ①このサイトからの通知をオンにする<br>
                                     サイトからの通知を許可する必要があります。<br>
-                                    初めてのご利用の際、「ブッシュテスト」ボタンを押すと「通知を許可しますか？」という表示が出てくるので許可をしてください。<br>
+                                    初めてのご利用の際、「ブッシュテスト」ボタンを押すと「次の許可を求めています」という表示が出てくるので「許可」してください。<br>
                                     また、ブラウザの設定を変更する事でサイトからの通知を許可する事もできます。<br><br>
                                     ②通知内容をご入力下さい<br>
                                     プッシュ内容欄のタイトル・メッセージ・通知時間をご入力して下さい。<br>
@@ -122,8 +123,7 @@
                                 <p>以下は注意事項となります<br><br>
                                     ・PC版のGoogleChrome,Firefox,MicrosoftEdgeのみで動作します。<br>
                                     ・このページから離れてしまうとpush通知が行われなくなるので、ページは開きっぱなしでお願いします。<br>
-                                    ・push通知の生存時間は約10秒程のため通知に気づきづらい可能性がございます。<br>
-                                    当アプリを使用した事によるトラブルに関しましては責任を負いかねますのでご了承お願いいたします。<br>
+                                    ・当アプリを使用した事によるトラブルに関しましては責任を負いかねますのでご了承お願いいたします。<br>
                                     ・質問等ございましたら<a
                                         href="https://twitter.com/MONOMONOSU">Twitter(@MONOMONOSU)</a>までご連絡下さい。
                                 </p>
@@ -229,7 +229,8 @@
             Push.create(title, {
                 body: message,
                 icon: 'image/favicon.ico',
-                timeout: 10000,
+                // timeout: 10000,
+                requireInteraction: true,
                 onClick: function () {
                     this.close();
                     location.href = 'https://push-timer.monomonosu.com/';
