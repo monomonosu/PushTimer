@@ -90,9 +90,45 @@
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto">
-                        <b-nav-item href="#">Home</b-nav-item>
-                        <b-nav-item href="#">guide</b-nav-item>
-                        <b-nav-item href="#">policy</b-nav-item>
+                        <!-- <b-nav-item href="#">Home</b-nav-item> -->
+                        <b-nav-item @click="$bvModal.show('modal-guide')">guide</b-nav-item>
+                        <b-modal id="modal-guide" hide-footer size="lg">
+                            <template #modal-title>
+                                使い方
+                            </template>
+                            <div>
+                                <p>指定した時間にPush通知でお知らせするタイマーです。<br><br>
+                                    ①このサイトからの通知をオンにする<br>
+                                    サイトからの通知を許可する必要があります。<br>
+                                    初めてのご利用の際、「ブッシュテスト」ボタンを押すと「通知を許可しますか？」という表示が出てくるので許可をしてください。<br>
+                                    また、ブラウザの設定を変更する事でサイトからの通知を許可する事もできます。<br><br>
+                                    ②通知内容をご入力下さい<br>
+                                    プッシュ内容欄のタイトル・メッセージ・通知時間をご入力して下さい。<br>
+                                    タイトル・メッセージはpush通知時に表示される内容となります。<br>
+                                    通知時間は分単位となります。<br>
+                                    入力後submitボタンを押して下さい。<br><br>
+                                    ③時間になったらpush通知でお知らせします<br>
+                                    このページから離れてしまうとpush通知が届かないので、ページは開いたままでお待ち下さい。<br>
+                                    通知時間になったらpush通知でお知らせします。<br>
+                                </p>
+                            </div>
+                        </b-modal>
+                        <b-nav-item @click="$bvModal.show('modal-note')">note</b-nav-item>
+                        <b-modal id="modal-note" hide-footer size="lg">
+                            <template #modal-title>
+                                注意事項
+                            </template>
+                            <div>
+                                <p>以下は注意事項となります<br><br>
+                                    ・PC版のGoogleChrome,Firefox,MicrosoftEdgeのみで動作します。<br>
+                                    ・このページから離れてしまうとpush通知が行われなくなるので、ページは開きっぱなしでお願いします。<br>
+                                    ・push通知の生存時間は約10秒程のため通知に気づきづらい可能性がございます。<br>
+                                    当アプリを使用した事によるトラブルに関しましては責任を負いかねますのでご了承お願いいたします。<br>
+                                    ・質問等ございましたら<a
+                                        href="https://twitter.com/MONOMONOSU">Twitter(@MONOMONOSU)</a>までご連絡下さい。
+                                </p>
+                            </div>
+                        </b-modal>
                     </b-navbar-nav>
                 </b-navbar>
             </div>
@@ -101,12 +137,16 @@
         <!-- 説明 -->
         <b-row>
             <b-col>
-                <b-card bg-variant="dark" text-variant="white" title="あなたの予定、プッシュ通知で知らせます。" class="m-5 text-center">
+                <b-card bg-variant="dark" text-variant="white" title="間近の予定、プッシュ通知で知らせます。" class="m-5 text-center">
                     <b-card-text>
                         PushTimerは時間を指定するだけでPush通知してくれるWebアプリケーションです。<br>
                         使い方はguideリンクを見てね。
                     </b-card-text>
-                    <b-button href="#" variant="primary">Go guide</b-button>
+                    <b-button @click="$bvModal.show('modal-guide')" variant="primary">Go guide</b-button>
+                    <br>
+                    <b-card-text>
+                        ※当アプリはPC版のGoogleChrome,Firefox,MicrosoftEdgeでご利用下さい。
+                    </b-card-text>
                 </b-card>
             </b-col>
         </b-row>
