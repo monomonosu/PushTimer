@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="jp">
+
+<head>
+    <!--    ページ内設定  -->
+    <meta charset="utf-8">
+    <title>PushTimer | guide</title>
+    <meta name="description" content="プッシュ通知で知らせてくれるタイマーアプリの使い方。">
+    <link rel="shortcut icon" href="image/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--    SNSでの表示設定    -->
+    <meta property="og:title" content="PushTimer | 使い方">
+    <meta property="og:site_name" content="PushTimer使い方">
+    <meta property="og:description" content="プッシュタイマーの使い方">
+    <meta property="og:type" content="website">
+    <!-- <meta propetry="og:url" content="http://monomonosu.com/"> -->
+    <!-- <meta property="og:image" content="https://images.unsplash.com/photo-1554721378-4a20bd10c751?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=966&q=80"> -->
+    <!--  Twitter  -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:site" content="@MONOMONOSU">
+
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue.min.css" />
+
+    <!-- Load fontawesome -->
+    <!-- link href="./css/all.css" rel="stylesheet" -->
+    <!--load all styles -->
+    <!-- <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
+    <link href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" rel="stylesheet">
+
+    <!-- Load polyfills to support older browsers -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+        crossorigin="anonymous"></script>
+
+    <!-- Load Vue followed by BootstrapVue -->
+    <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue.min.js"></script>
+
+    <!-- Load the following for BootstrapVueIcons support -->
+    <script src="https://unpkg.com/bootstrap-vue@2.21.1/dist/bootstrap-vue-icons.min.js"></script>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <!-- push.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
+
+
+    <!-- bootstrap vue インポート -->
+    <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
+        <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" /> -->
+    <!-- Load polyfills to support older browsers -->
+    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
+            crossorigin="anonymous"></script> -->
+    <!-- Load Vue followed by BootstrapVue -->
+    <!-- <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
+        <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script> -->
+    <!-- Load the following for BootstrapVueIcons support -->
+    <!-- <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script> -->
+
+    <!--    CSSのロード    -->
+    <!-- <link rel="stylesheet" href="common.css">
+        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="responsive-common.css">
+        <link rel="stylesheet" href="responsive-home.css"> -->
+    <!--    <link rel="stylesheet" href="responsive.css">-->
+</head>
+
+<body>
+    <style>
+        body {
+            background-color: #17A2B8;
+            color: black;
+        }
+    </style>
+
+    <div id="app">
+        <!-- ヘッダー -->
+        <template>
+            <div>
+                <b-navbar type="dark" variant="dark">
+                    <b-navbar-nav class="mr-auto">
+                        <b-nav-item href="#"><img src="image/favicon.ico" width="32px" height="32px"></b-nav-item>
+                        <h1 style="color: beige;">PushTimer</h1>
+                    </b-navbar-nav>
+
+                    <b-navbar-nav class="ml-auto">
+                        <b-nav-item href="#">Home</b-nav-item>
+                        <b-nav-item href="#">guide</b-nav-item>
+                        <b-nav-item href="#">policy</b-nav-item>
+                    </b-navbar-nav>
+                </b-navbar>
+            </div>
+        </template>
+
+        <!-- 説明 -->
+        <b-row>
+            <b-col>
+                <b-card bg-variant="dark" text-variant="white" title="注意事項" class="m-5 text-center">
+                    <b-card-text>
+                        ・PC版のGoogleChrome,Firefox,MicrosoftEdgeのみで動作します。<br>
+                        ・Homeページから離れてしまうとpush通知が行われなくなるので、ページは開きっぱなしでお願いします。
+                    </b-card-text>
+                </b-card>
+            </b-col>
+        </b-row>
+
+        <!-- 本文 -->
+        <b-row>
+            <b-col>
+                <b-card bg-variant="dark" text-variant="white" title="使い方" class="m-5 text-center">
+                    <b-card bg-variant="dark" text-variant="white" border-variant="info" title="①このサイトからの通知をオンにする"
+                        class="m-5 text-center">
+                        <img src="image/favicon.ico" alt=""><br>
+                        サイトからの通知を許可する必要があります。<br>
+                        「ブッシュテスト」ボタンを押すと「通知を許可しますか？」という表示が出てくるので
+                        許可をしてください。<br>
+                        また、ブラウザの設定を変更する事でサイトからの通知を許可する事もできます。<br>
+                        GoogleChromeをお使いの場合
+                    </b-card>
+                    <b-card bg-variant="dark" text-variant="white" border-variant="info"
+                        title="②通知時に表示するタイトル・メッセージ・何分後にお知らせするか入力してください" class="m-5 text-center">
+                        <img src="image/favicon.ico" alt=""><br>
+                        プッシュ内容欄のタイトル・メッセージ・通知時間をご入力して下さい。<br>
+                        タイトル・メッセージはpush通知時に表示される内容となります。<br>
+                        通知時間は分単位となります。<br>
+                        入力後submitボタンを押して下さい。
+                    </b-card>
+                    <b-card bg-variant="dark" text-variant="white" border-variant="info"
+                        title="③通知時間になったらpush通知でお知らせします" class="m-5 text-center">
+                        <img src="image/favicon.ico" alt=""><br>
+                        homeページから離れてしまうとpush通知が届かないので、homeページは開いたままでお待ち下さい。<br>
+                        通知時間になったらpush通知でお知らせします。<br>
+                    </b-card>
+                </b-card>
+            </b-col>
+        </b-row>
+
+    </div>
+
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                title: 'タイトル',
+                message: 'メッセージ',
+                input_time: ''
+            }
+        })
+    </script>
+
+</body>
+
+
+</html>
