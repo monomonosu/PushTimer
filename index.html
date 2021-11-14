@@ -143,10 +143,13 @@
                         使い方はguideリンクを見てね。
                     </b-card-text>
                     <b-button @click="$bvModal.show('modal-guide')" variant="primary">Go guide</b-button>
-                    <br>
                     <b-card-text>
+                        <br>
+                        初めてのご利用時にはこのサイトからのpush通知を許可する必要があります。<br>
+                        以下の「プッシュテスト」をクリックして、通知を許可して下さい。<br>
                         ※当アプリはPC版のGoogleChrome,Firefox,MicrosoftEdgeでご利用下さい。
                     </b-card-text>
+                    <b-button id="pushtest" @click="PushTest()">プッシュテスト</b-button>
                 </b-card>
             </b-col>
         </b-row>
@@ -200,6 +203,13 @@
                 input_time: ''
             }
         })
+
+        //プッシュテスト
+        function PushTest(){
+            var message = '通知成功';
+            var title = '通知テスト';
+            push(title,message);
+        }
 
         //ボタンが押された時
         function PushSubmit() {
