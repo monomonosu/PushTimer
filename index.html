@@ -102,7 +102,8 @@
                                     ①このサイトからの通知をオンにする<br>
                                     サイトからの通知を許可する必要があります。<br>
                                     初めてのご利用の際、「ブッシュテスト」ボタンを押すと「次の許可を求めています」という表示が出てくるので「許可」してください。<br>
-                                    また、ブラウザの設定を変更する事でサイトからの通知を許可する事もできます。<br><br>
+                                    また、ブラウザの設定を変更する事でサイトからの通知を許可する事もできます。<br>
+                                    通知許可を設定から変更する場合、後に記述の通知許可設定手順をお読みください。<br><br>
                                     ②通知内容をご入力下さい<br>
                                     プッシュ内容欄のタイトル・メッセージ・通知時間をご入力して下さい。<br>
                                     タイトル・メッセージはpush通知時に表示される内容となります。<br>
@@ -110,7 +111,12 @@
                                     入力後submitボタンを押して下さい。<br><br>
                                     ③時間になったらpush通知でお知らせします<br>
                                     このページから離れてしまうとpush通知が届かないので、ページは開いたままでお待ち下さい。<br>
-                                    通知時間になったらpush通知でお知らせします。<br>
+                                    通知時間になったらpush通知でお知らせします。<br><br><br>
+                                    [通知許可設定手順]<br><br>
+                                    <b-img src="image/permission_setting.png" fluid alt="Responsive image"></b-img><br><br>
+                                    ①URL左のアイコンをクリックし、「サイトの設定」をクリック<br><br>
+                                    <b-img src="image/permission_setting2.png" fluid alt="Responsive image"></b-img><br><br>
+                                    ②[プライバシーとセキュリティ]→[権限]の中の「通知」を許可に設定する。
                                 </p>
                             </div>
                         </b-modal>
@@ -179,7 +185,7 @@
                 <b-row>
                     <b-col>
                         <b-form-group label-cols-lg="2" label="通知時間：">
-                            <b-form-spinbutton v-model="input_time" min="1">
+                            <b-form-spinbutton v-model="input_time" min="1" max="1000">
                             </b-form-spinbutton>
                         </b-form-group>
                     </b-col>
@@ -205,10 +211,10 @@
         })
 
         //プッシュテスト
-        function PushTest(){
+        function PushTest() {
             var message = '通知成功';
             var title = '通知テスト';
-            push(title,message);
+            push(title, message);
         }
 
         //ボタンが押された時
