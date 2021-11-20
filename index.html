@@ -52,6 +52,10 @@
     <!-- push.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/push.js/1.0.12/push.min.js"></script>
 
+    <!-- googleアドセンス -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3267778982788972"
+        crossorigin="anonymous"></script>
+
 
     <!-- bootstrap vue インポート -->
     <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
@@ -113,9 +117,11 @@
                                     このページから離れてしまうとpush通知が届かないので、ページは開いたままでお待ち下さい。<br>
                                     通知時間になったらpush通知でお知らせします。<br><br><br>
                                     [通知許可設定手順]<br><br>
-                                    <b-img src="image/permission_setting.png" fluid alt="Responsive image"></b-img><br><br>
+                                    <b-img src="image/permission_setting.png" fluid alt="Responsive image"></b-img>
+                                    <br><br>
                                     ①URL左のアイコンをクリックし、「サイトの設定」をクリック<br><br>
-                                    <b-img src="image/permission_setting2.png" fluid alt="Responsive image"></b-img><br><br>
+                                    <b-img src="image/permission_setting2.png" fluid alt="Responsive image"></b-img>
+                                    <br><br>
                                     ②[プライバシーとセキュリティ]→[権限]の中の「通知」を許可に設定する。
                                 </p>
                             </div>
@@ -197,6 +203,13 @@
                 <div class="mt-2">通知時間：{{ input_time }} 分後にお知らせします</div>
             </template>
             <b-button variant="primary" id="submit" @click="PushSubmit()">Submit!</b-button>
+            <template>
+                <div class="p-3 bg-secondary progress-bar-striped" style="min-height: 170px;">
+                    <b-button class="mb-2" variant="primary" @click="makeToast();PushSubmit()">
+                        Submit!
+                    </b-button>
+                </div>
+            </template>
         </b-card>
     </div>
 
@@ -207,6 +220,19 @@
                 title: 'タイトル',
                 message: 'メッセージ',
                 input_time: ''
+            },
+            methods: {
+                makeToast(append = false) {
+                    var this_input_time = parseInt(app.input_time);
+                    if (isNaN(this_input_time)) {
+                        return false;
+                    }
+                    this.$bvToast.toast(`${this.input_time} 分後にお知らせします。`, {
+                        title: 'セット完了',
+                        noAutoHide:true,
+                        appendToast: append
+                    })
+                }
             }
         })
 
