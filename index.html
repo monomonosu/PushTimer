@@ -229,7 +229,8 @@
                         id: 'toast' + toastNum_,
                         title: 'プッシュ予約' + toastNum_,
                         noAutoHide: true,
-                        appendToast: append
+                        noCloseButton: true,
+                        appendToast: append,
                     })
                     var timeLeft = this_input_time * 60;
                     const countDown = () => {
