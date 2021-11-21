@@ -202,14 +202,9 @@
                 <div class="mt-2">通知メッセージ：{{ message }}</div>
                 <div class="mt-2">通知時間：{{ input_time }} 分後にお知らせします</div>
             </template>
-            <b-button variant="primary" id="submit" @click="PushSubmit()">Submit!</b-button>
-            <template>
-                <div class="p-3 bg-secondary progress-bar-striped" style="min-height: 170px;">
-                    <b-button class="mb-2" variant="primary" @click="makeToast();PushSubmit()">
-                        Submit!
-                    </b-button>
-                </div>
-            </template>
+            <b-button class="mt-3" variant="primary" @click="makeToast();PushSubmit()">
+                Submit!
+            </b-button>
         </b-card>
     </div>
 
@@ -219,22 +214,43 @@
             data: {
                 title: 'タイトル',
                 message: 'メッセージ',
-                input_time: ''
+                input_time: '',
+                toastNum: 1,
             },
             methods: {
                 makeToast(append = false) {
-                    var this_input_time = parseInt(app.input_time);
+                    var this_input_time = parseInt(this.input_time);    //自信の入力分数
+                    var toastNum_ = this.toastNum;                      //トースター番号
+                    app.toastNum++;
                     if (isNaN(this_input_time)) {
                         return false;
                     }
                     this.$bvToast.toast(`${this.input_time} 分後にお知らせします。`, {
-                        title: 'セット完了',
+                        id: 'toast' + toastNum_,
+                        title: 'プッシュ予約' + toastNum_,
                         noAutoHide: true,
                         appendToast: append
                     })
+                    var timeLeft = this_input_time * 60;
+                    const countDown = () => {
+                        timeLeft--;
+                        ChangeSec(toastNum_, timeLeft);
+                        if (timeLeft <= 0) {
+                            this.$bvToast.hide('toast' + toastNum_)
+                            clearInterval(intervalId);
+                        }
+                        // console.log(toastNum_);
+                        // console.log(timeLeft);
+                    }
+                    var intervalId = setInterval(countDown, 1000);
                 }
             }
         })
+
+        //残り秒数DOM操作
+        function ChangeSec(toastNum, timeLeft) {
+            $("#toast" + toastNum + " div").text("残り時間：" + timeLeft + " 秒");
+        }
 
         //プッシュテスト
         function PushTest() {
