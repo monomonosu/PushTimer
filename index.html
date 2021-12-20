@@ -96,7 +96,6 @@
                     </b-navbar-nav>
 
                     <b-navbar-nav class="ml-auto">
-                        <!-- <b-nav-item href="#">Home</b-nav-item> -->
                         <b-nav-item @click="$bvModal.show('modal-guide')">guide</b-nav-item>
                         <b-modal id="modal-guide" hide-footer size="lg">
                             <template #modal-title>
@@ -256,7 +255,7 @@
                     var toastNum_ = this.toastNum;                      //トースター番号
                     var title = app.title;
                     var message = app.message;
-                    var isActice = this.isActice;
+                    var isActive = this.isActive;
                     const h = this.$createElement;
                     // メッセージ
                     const msg = h(
@@ -286,18 +285,16 @@
                             push(title, message);
                             clearInterval(intervalId);
                         }
-                        if (isActice == false) {
+                        if (isActive == false) {
                             console.log('falseになった');
                             clearInterval(intervalId);
                         }
-                        // console.log(toastNum_);
-                        // console.log(timeLeft);
                     }
                     var intervalId = setInterval(countDown, 1000);
 
                     function OnTest(toast, toastNum) {
                         toast.hide('toast' + toastNum);
-                        isActice = false;
+                        isActive = false;
                     }
                 }
             }
@@ -333,7 +330,6 @@
             Push.create(title, {
                 body: message,
                 icon: 'image/favicon.ico',
-                // timeout: 10000,
                 requireInteraction: true,
                 onClick: function () {
                     this.close();
@@ -341,12 +337,6 @@
             });
         }
 
-        // デバッグ
-        $(function () {
-            $("#submit").click(function () {
-                console.log(parseInt(app.input_time));
-            });
-        });
     </script>
 </body>
 
