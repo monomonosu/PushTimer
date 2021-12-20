@@ -11,7 +11,7 @@
     <!--    SNSでの表示設定    -->
     <meta property="og:title" content="PushTimer | トップ">
     <meta property="og:site_name" content="PushTimer">
-    <meta property="og:description" content="あなたの予定、プッシュ通知で知らせます。">
+    <meta property="og:description" content="間近の予定、プッシュ通知で知らせます。">
     <meta property="og:type" content="website">
     <!-- <meta propetry="og:url" content="http://monomonosu.com/"> -->
     <!-- <meta property="og:image" content="https://images.unsplash.com/photo-1554721378-4a20bd10c751?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=966&q=80"> -->
@@ -57,25 +57,6 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3267778982788972"
         crossorigin="anonymous"></script>
 
-
-    <!-- bootstrap vue インポート -->
-    <!-- <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap/dist/css/bootstrap.min.css" />
-    <link type="text/css" rel="stylesheet" href="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.css" /> -->
-    <!-- Load polyfills to support older browsers -->
-    <!-- <script src="https://polyfill.io/v3/polyfill.min.js?features=es2015%2CIntersectionObserver"
-        crossorigin="anonymous"></script> -->
-    <!-- Load Vue followed by BootstrapVue -->
-    <!-- <script src="https://unpkg.com/vue@latest/dist/vue.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue.min.js"></script> -->
-    <!-- Load the following for BootstrapVueIcons support -->
-    <!-- <script src="https://unpkg.com/bootstrap-vue@latest/dist/bootstrap-vue-icons.min.js"></script> -->
-
-    <!--    CSSのロード    -->
-    <!-- <link rel="stylesheet" href="common.css">
-    <link rel="stylesheet" href="index.css">
-    <link rel="stylesheet" href="responsive-common.css">
-    <link rel="stylesheet" href="responsive-home.css"> -->
-    <!--    <link rel="stylesheet" href="responsive.css">-->
 </head>
 
 <body>
@@ -83,6 +64,26 @@
         body {
             background-color: #17A2B8;
             color: black;
+        }
+
+        @media (min-width:730px) {
+            .ad1-tablet {
+                display: none;
+            }
+
+            .ad2-tablet {
+                display: none;
+            }
+        }
+
+        @media (max-width:729px) {
+            .ad1-pc {
+                display: none;
+            }
+
+            .ad2-pc {
+                display: none;
+            }
         }
     </style>
     <div id="app">
@@ -168,11 +169,18 @@
             </b-col>
         </b-row>
 
-        <div style="text-align:center;">
+        <!-- AD -->
+        <div class="ad1-pc" style="text-align:center;">
             <a href="https://px.a8.net/svt/ejp?a8mat=3HP648+8KZZQQ+50+2HL3E9" rel="nofollow">
                 <img border="0" width="468" height="60" alt=""
                     src="https://www23.a8.net/svt/bgt?aid=211126328519&wid=001&eno=01&mid=s00000000018015047000&mc=1"></a>
             <img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=3HP648+8KZZQQ+50+2HL3E9" alt="">
+        </div>
+        <div class="ad1-tablet" style="text-align:center;">
+            <a href="https://px.a8.net/svt/ejp?a8mat=3HP648+8KZZQQ+50+2HU3GX" rel="nofollow">
+                <img border="0" width="234" height="60" alt=""
+                    src="https://www22.a8.net/svt/bgt?aid=211126328519&wid=001&eno=01&mid=s00000000018015089000&mc=1"></a>
+            <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3HP648+8KZZQQ+50+2HU3GX" alt="">
         </div>
 
         <!-- 本文 -->
@@ -216,12 +224,20 @@
             </b-button>
         </b-card>
 
-        <div style="text-align:center;">
+        <!-- AD -->
+        <div class="ad2-pc" style="text-align:center;">
             <a href="https://px.a8.net/svt/ejp?a8mat=3HP648+9N3QGI+CO4+6BU5T" rel="nofollow">
                 <img border="0" width="728" height="90" alt=""
                     src="https://www27.a8.net/svt/bgt?aid=211126328583&wid=001&eno=01&mid=s00000001642001063000&mc=1"></a>
             <img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=3HP648+9N3QGI+CO4+6BU5T" alt="">
         </div>
+        <div class="ad2-tablet" style="text-align:center;">
+            <a href="https://px.a8.net/svt/ejp?a8mat=3HP648+9N3QGI+CO4+6KESX" rel="nofollow">
+                <img border="0" width="350" height="80" alt=""
+                    src="https://www20.a8.net/svt/bgt?aid=211126328583&wid=001&eno=01&mid=s00000001642001103000&mc=1"></a>
+            <img border="0" width="1" height="1" src="https://www17.a8.net/0.gif?a8mat=3HP648+9N3QGI+CO4+6KESX" alt="">
+        </div>
+
     </div>
 
     <script>
