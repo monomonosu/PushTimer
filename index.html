@@ -291,6 +291,12 @@
                         toast.hide('toast' + toastNum);
                         isActive = false;
                     }
+                },
+                //プッシュテスト
+                PushTest() {
+                    var message = '通知成功';
+                    var title = '通知テスト';
+                    push(title, message);
                 }
             }
         })
@@ -298,13 +304,6 @@
         //残り秒数DOM操作
         function ChangeSec(toastNum, timeLeft) {
             $("#toast" + toastNum + " div p p").text("残り時間：" + timeLeft + " 秒");
-        }
-
-        //プッシュテスト
-        function PushTest() {
-            var message = '通知成功';
-            var title = '通知テスト';
-            push(title, message);
         }
 
         //ボタンが押された時
